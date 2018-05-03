@@ -1,4 +1,4 @@
-node-modules
+node_modules
 fabric-client*
 .DS_Store
 artifacts/ca/msp

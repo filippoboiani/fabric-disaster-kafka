@@ -1,6 +1,6 @@
-## Balance transfer
+## Hyperledger for Crises Management  
 
-A sample Node.js app to demonstrate **__fabric-client__** & **__fabric-ca-client__** Node.js SDK APIs
+A sample Node.js app to demonstrate **__fabric-client__** & **__fabric-ca-client__** Node.js SDK APIs.
 
 ### Prerequisites and setup:
 
@@ -16,9 +16,9 @@ cd fabric-samples/balance-transfer/
 
 Once you have completed the above setup, you will have provisioned a local network with the following docker container configuration:
 
-* 2 CAs
-* A SOLO orderer
-* 4 peers (2 peers per Org)
+* 6 CAs
+* A Kafka ordered with 3 Zookeeper servers and 4 Kafka brokers
+* 12 peers (2 peers per (6) Org)
 
 #### Artifacts
 * Crypto material has been generated using the **cryptogen** tool from Hyperledger Fabric and mounted to all peers, the orderering node and CA containers. More details regarding the cryptogen tool are available [here](http://hyperledger-fabric.readthedocs.io/en/latest/build_network.html#crypto-generator).
@@ -26,7 +26,7 @@ Once you have completed the above setup, you will have provisioned a local netwo
 
 ## Running the sample program
 
-There are two options available for running the balance-transfer sample
+There are two options available for running the sample
 For each of these options, you may choose to run with chaincode written in golang or in node.js.
 
 ### Option 1:
@@ -92,7 +92,30 @@ cd fabric-samples/balance-transfer
 ./testAPIs.sh -l node
 ```
 
+## Testing the Appliaction
 
+The application takes advantage of Hyperledger Caliper to test smart contracts and performances. To run the test: 
+
+1. Run the application 
+
+```
+./runApp.sh
+```
+
+2. Navigate to the test folder
+
+```
+cd test/benchmark/disaster
+```
+
+3. Run the following command
+
+```
+node main.js -c config-disaster.json
+```
+
+The test suit will create a channel, join all the organizations, install the test chaincode and run the test suite. Once te test has completed, an html report will be generated in the same folder.
+ 
 ## Sample REST APIs Requests
 
 ### Login Request

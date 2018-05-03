@@ -138,7 +138,7 @@ curl -s -X POST \
 }'
 echo
 echo
-sleep 5
+sleep 20
 echo "POST request Join channel on Org1"
 echo
 curl -s -X POST \
@@ -331,6 +331,7 @@ curl -s -X POST \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
   -d "{
+	\"peers\":[\"peer0.org1.example.com\",\"peer1.org1.example.com\"],
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
@@ -457,3 +458,6 @@ echo
 
 
 echo "Total execution time : $(($(date +%s)-starttime)) secs ..."
+
+
+# peer chaincode instantiate -C mychannel -o orderer.example.com:7050 -n mycc -v v0 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -c '{"Args":["init"]}'
