@@ -74,6 +74,5 @@ function installNodeModules() {
 restartNetwork
 
 installNodeModules
-echo 'Runnin in ${TARGET_NETWORK} mode...'
-export $TARGET_NETWORK
-PORT=4000 node app
+echo "Runnin in ${TARGET_NETWORK} mode..."
+TARGET_NETWORK=$TARGET_NETWORK PORT=4000 node app
