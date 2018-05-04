@@ -101,29 +101,29 @@ echo
 echo "ORG4 token is $ORG4_TOKEN"
 echo
 
-echo "POST request Enroll on Org5 ..."
-echo
-ORG5_TOKEN=$(curl -s -X POST \
-  http://localhost:4000/users \
-  -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=Terry&orgName=Org5')
-echo $ORG5_TOKEN
-ORG5_TOKEN=$(echo $ORG5_TOKEN | jq ".token" | sed "s/\"//g")
-echo
-echo "ORG5 token is $ORG5_TOKEN"
-echo
+# echo "POST request Enroll on Org5 ..."
+# echo
+# ORG5_TOKEN=$(curl -s -X POST \
+#   http://localhost:4000/users \
+#   -H "content-type: application/x-www-form-urlencoded" \
+#   -d 'username=Terry&orgName=Org5')
+# echo $ORG5_TOKEN
+# ORG5_TOKEN=$(echo $ORG5_TOKEN | jq ".token" | sed "s/\"//g")
+# echo
+# echo "ORG5 token is $ORG5_TOKEN"
+# echo
 
-echo "POST request Enroll on Org6 ..."
-echo
-ORG6_TOKEN=$(curl -s -X POST \
-  http://localhost:4000/users \
-  -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=Jerry&orgName=Org6')
-echo $ORG6_TOKEN
-ORG6_TOKEN=$(echo $ORG6_TOKEN | jq ".token" | sed "s/\"//g")
-echo
-echo "ORG6 token is $ORG6_TOKEN"
-echo
+# echo "POST request Enroll on Org6 ..."
+# echo
+# ORG6_TOKEN=$(curl -s -X POST \
+#   http://localhost:4000/users \
+#   -H "content-type: application/x-www-form-urlencoded" \
+#   -d 'username=Jerry&orgName=Org6')
+# echo $ORG6_TOKEN
+# ORG6_TOKEN=$(echo $ORG6_TOKEN | jq ".token" | sed "s/\"//g")
+# echo
+# echo "ORG6 token is $ORG6_TOKEN"
+# echo
 
 echo
 echo "POST request Create channel  ..."
@@ -187,29 +187,29 @@ curl -s -X POST \
 echo
 echo
 
-echo "POST request Join channel on Org5"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/mychannel/peers \
-  -H "authorization: Bearer $ORG5_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer0.org5.example.com","peer1.org5.example.com"]
-}'
-echo
-echo
+# echo "POST request Join channel on Org5"
+# echo
+# curl -s -X POST \
+#   http://localhost:4000/channels/mychannel/peers \
+#   -H "authorization: Bearer $ORG5_TOKEN" \
+#   -H "content-type: application/json" \
+#   -d '{
+# 	"peers": ["peer0.org5.example.com","peer1.org5.example.com"]
+# }'
+# echo
+# echo
 
-echo "POST request Join channel on Org6"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/mychannel/peers \
-  -H "authorization: Bearer $ORG6_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer0.org6.example.com","peer1.org6.example.com"]
-}'
-echo
-echo
+# echo "POST request Join channel on Org6"
+# echo
+# curl -s -X POST \
+#   http://localhost:4000/channels/mychannel/peers \
+#   -H "authorization: Bearer $ORG6_TOKEN" \
+#   -H "content-type: application/json" \
+#   -d '{
+# 	"peers": ["peer0.org6.example.com","peer1.org6.example.com"]
+# }'
+# echo
+# echo
 
 
 echo "POST Install chaincode on Org1"
@@ -276,37 +276,37 @@ curl -s -X POST \
 echo
 echo
 
-echo "POST Install chaincode on Org5"
-echo
-curl -s -X POST \
-  http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $ORG5_TOKEN" \
-  -H "content-type: application/json" \
-  -d "{
-	\"peers\": [\"peer0.org5.example.com\",\"peer1.org5.example.com\"],
-	\"chaincodeName\":\"mycc\",
-	\"chaincodePath\":\"$CC_SRC_PATH\",
-	\"chaincodeType\": \"$LANGUAGE\",
-	\"chaincodeVersion\":\"v0\"
-}"
-echo
-echo
+# echo "POST Install chaincode on Org5"
+# echo
+# curl -s -X POST \
+#   http://localhost:4000/chaincodes \
+#   -H "authorization: Bearer $ORG5_TOKEN" \
+#   -H "content-type: application/json" \
+#   -d "{
+# 	\"peers\": [\"peer0.org5.example.com\",\"peer1.org5.example.com\"],
+# 	\"chaincodeName\":\"mycc\",
+# 	\"chaincodePath\":\"$CC_SRC_PATH\",
+# 	\"chaincodeType\": \"$LANGUAGE\",
+# 	\"chaincodeVersion\":\"v0\"
+# }"
+# echo
+# echo
 
-echo "POST Install chaincode on Org6"
-echo
-curl -s -X POST \
-  http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $ORG6_TOKEN" \
-  -H "content-type: application/json" \
-  -d "{
-	\"peers\": [\"peer0.org6.example.com\",\"peer1.org6.example.com\"],
-	\"chaincodeName\":\"mycc\",
-	\"chaincodePath\":\"$CC_SRC_PATH\",
-	\"chaincodeType\": \"$LANGUAGE\",
-	\"chaincodeVersion\":\"v0\"
-}"
-echo
-echo
+# echo "POST Install chaincode on Org6"
+# echo
+# curl -s -X POST \
+#   http://localhost:4000/chaincodes \
+#   -H "authorization: Bearer $ORG6_TOKEN" \
+#   -H "content-type: application/json" \
+#   -d "{
+# 	\"peers\": [\"peer0.org6.example.com\",\"peer1.org6.example.com\"],
+# 	\"chaincodeName\":\"mycc\",
+# 	\"chaincodePath\":\"$CC_SRC_PATH\",
+# 	\"chaincodeType\": \"$LANGUAGE\",
+# 	\"chaincodeVersion\":\"v0\"
+# }"
+# echo
+# echo
 
 
 # echo "POST instantiate chaincode on peer1 of Org1"

@@ -79,41 +79,41 @@ services:
       - ./ca:/etc/hyperledger/fabric-ca-server
     container_name: ca_peerOrg4
 
-  ca.org5.example.com:
-    image: hyperledger/fabric-ca
-    environment:
-      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
-      - FABRIC_CA_SERVER_CA_NAME=ca-org5
-      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org5.example.com-cert.pem
-      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/1937984d559ee7bc663a9cfd102de7ec55efef62304118d546d46c95b59b8cbe_sk
-      - FABRIC_CA_SERVER_TLS_ENABLED=true
-      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org5.example.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/1937984d559ee7bc663a9cfd102de7ec55efef62304118d546d46c95b59b8cbe_sk
-    ports:
-      - "11054:7054"
-    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
-    volumes:
-      - ./channel/crypto-config/peerOrganizations/org5.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
-      - ./ca:/etc/hyperledger/fabric-ca-server
-    container_name: ca_peerOrg5
+  # ca.org5.example.com:
+  #   image: hyperledger/fabric-ca
+  #   environment:
+  #     - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+  #     - FABRIC_CA_SERVER_CA_NAME=ca-org5
+  #     - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org5.example.com-cert.pem
+  #     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/1937984d559ee7bc663a9cfd102de7ec55efef62304118d546d46c95b59b8cbe_sk
+  #     - FABRIC_CA_SERVER_TLS_ENABLED=true
+  #     - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org5.example.com-cert.pem
+  #     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/1937984d559ee7bc663a9cfd102de7ec55efef62304118d546d46c95b59b8cbe_sk
+  #   ports:
+  #     - "11054:7054"
+  #   command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+  #   volumes:
+  #     - ./channel/crypto-config/peerOrganizations/org5.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+  #     - ./ca:/etc/hyperledger/fabric-ca-server
+  #   container_name: ca_peerOrg5
 
-  ca.org6.example.com:
-    image: hyperledger/fabric-ca
-    environment:
-      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
-      - FABRIC_CA_SERVER_CA_NAME=ca-org6
-      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org6.example.com-cert.pem
-      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/0298bf14485a34bf0c17039237a0c8346cc8832d20dc6f517d495c3ddf34acdf_sk
-      - FABRIC_CA_SERVER_TLS_ENABLED=true
-      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org6.example.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/0298bf14485a34bf0c17039237a0c8346cc8832d20dc6f517d495c3ddf34acdf_sk
-    ports:
-      - "12054:7054"
-    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
-    volumes:
-      - ./channel/crypto-config/peerOrganizations/org6.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
-      - ./ca:/etc/hyperledger/fabric-ca-server
-    container_name: ca_peerOrg6
+  # ca.org6.example.com:
+  #   image: hyperledger/fabric-ca
+  #   environment:
+  #     - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+  #     - FABRIC_CA_SERVER_CA_NAME=ca-org6
+  #     - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org6.example.com-cert.pem
+  #     - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/0298bf14485a34bf0c17039237a0c8346cc8832d20dc6f517d495c3ddf34acdf_sk
+  #     - FABRIC_CA_SERVER_TLS_ENABLED=true
+  #     - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org6.example.com-cert.pem
+  #     - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/0298bf14485a34bf0c17039237a0c8346cc8832d20dc6f517d495c3ddf34acdf_sk
+  #   ports:
+  #     - "12054:7054"
+  #   command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+  #   volumes:
+  #     - ./channel/crypto-config/peerOrganizations/org6.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+  #     - ./ca:/etc/hyperledger/fabric-ca-server
+  #   container_name: ca_peerOrg6
 
   orderer.example.com:
     container_name: orderer.example.com
@@ -140,8 +140,8 @@ services:
         - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
         - ./channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/:/etc/hyperledger/crypto/peerOrg3
         - ./channel/crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/:/etc/hyperledger/crypto/peerOrg4
-        - ./channel/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/:/etc/hyperledger/crypto/peerOrg5
-        - ./channel/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/:/etc/hyperledger/crypto/peerOrg6
+        # - ./channel/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/:/etc/hyperledger/crypto/peerOrg5
+        # - ./channel/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/:/etc/hyperledger/crypto/peerOrg6
     depends_on:
       - zookeeper0
       - zookeeper1
@@ -287,73 +287,73 @@ services:
     depends_on:
       - orderer.example.com
 
-  peer0.org5.example.com:
-    container_name: peer0.org5.example.com
-    extends:
-      file:   base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer0.org5.example.com
-      - CORE_PEER_LOCALMSPID=Org5MSP
-      - CORE_PEER_ADDRESS=peer0.org5.example.com:7051
-    ports:
-      - 11051:7051
-      - 11053:7053
-    volumes:
-        - ./channel/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/:/etc/hyperledger/crypto/peer
-    depends_on:
-      - orderer.example.com
+  # peer0.org5.example.com:
+  #   container_name: peer0.org5.example.com
+  #   extends:
+  #     file:   base.yaml
+  #     service: peer-base
+  #   environment:
+  #     - CORE_PEER_ID=peer0.org5.example.com
+  #     - CORE_PEER_LOCALMSPID=Org5MSP
+  #     - CORE_PEER_ADDRESS=peer0.org5.example.com:7051
+  #   ports:
+  #     - 11051:7051
+  #     - 11053:7053
+  #   volumes:
+  #       - ./channel/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/:/etc/hyperledger/crypto/peer
+  #   depends_on:
+  #     - orderer.example.com
 
-  peer1.org5.example.com:
-    container_name: peer1.org5.example.com
-    extends:
-      file:   base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer1.org5.example.com
-      - CORE_PEER_LOCALMSPID=Org5MSP
-      - CORE_PEER_ADDRESS=peer1.org5.example.com:7051
-    ports:
-      - 11056:7051
-      - 11058:7053
-    volumes:
-        - ./channel/crypto-config/peerOrganizations/org5.example.com/peers/peer1.org5.example.com/:/etc/hyperledger/crypto/peer
-    depends_on:
-      - orderer.example.com
+  # peer1.org5.example.com:
+  #   container_name: peer1.org5.example.com
+  #   extends:
+  #     file:   base.yaml
+  #     service: peer-base
+  #   environment:
+  #     - CORE_PEER_ID=peer1.org5.example.com
+  #     - CORE_PEER_LOCALMSPID=Org5MSP
+  #     - CORE_PEER_ADDRESS=peer1.org5.example.com:7051
+  #   ports:
+  #     - 11056:7051
+  #     - 11058:7053
+  #   volumes:
+  #       - ./channel/crypto-config/peerOrganizations/org5.example.com/peers/peer1.org5.example.com/:/etc/hyperledger/crypto/peer
+  #   depends_on:
+  #     - orderer.example.com
 
-  peer0.org6.example.com:
-    container_name: peer0.org6.example.com
-    extends:
-      file:   base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer0.org6.example.com
-      - CORE_PEER_LOCALMSPID=Org6MSP
-      - CORE_PEER_ADDRESS=peer0.org6.example.com:7051
-    ports:
-      - 12051:7051
-      - 12053:7053
-    volumes:
-        - ./channel/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/:/etc/hyperledger/crypto/peer
-    depends_on:
-      - orderer.example.com
+  # peer0.org6.example.com:
+  #   container_name: peer0.org6.example.com
+  #   extends:
+  #     file:   base.yaml
+  #     service: peer-base
+  #   environment:
+  #     - CORE_PEER_ID=peer0.org6.example.com
+  #     - CORE_PEER_LOCALMSPID=Org6MSP
+  #     - CORE_PEER_ADDRESS=peer0.org6.example.com:7051
+  #   ports:
+  #     - 12051:7051
+  #     - 12053:7053
+  #   volumes:
+  #       - ./channel/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/:/etc/hyperledger/crypto/peer
+  #   depends_on:
+  #     - orderer.example.com
 
-  peer1.org6.example.com:
-    container_name: peer1.org6.example.com
-    extends:
-      file:   base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer1.org6.example.com
-      - CORE_PEER_LOCALMSPID=Org6MSP
-      - CORE_PEER_ADDRESS=peer1.org6.example.com:7051
-    ports:
-      - 12056:7051
-      - 12058:7053
-    volumes:
-        - ./channel/crypto-config/peerOrganizations/org6.example.com/peers/peer1.org6.example.com/:/etc/hyperledger/crypto/peer
-    depends_on:
-      - orderer.example.com
+  # peer1.org6.example.com:
+  #   container_name: peer1.org6.example.com
+  #   extends:
+  #     file:   base.yaml
+  #     service: peer-base
+  #   environment:
+  #     - CORE_PEER_ID=peer1.org6.example.com
+  #     - CORE_PEER_LOCALMSPID=Org6MSP
+  #     - CORE_PEER_ADDRESS=peer1.org6.example.com:7051
+  #   ports:
+  #     - 12056:7051
+  #     - 12058:7053
+  #   volumes:
+  #       - ./channel/crypto-config/peerOrganizations/org6.example.com/peers/peer1.org6.example.com/:/etc/hyperledger/crypto/peer
+  #   depends_on:
+  #     - orderer.example.com
 
 
 #######################################################################
