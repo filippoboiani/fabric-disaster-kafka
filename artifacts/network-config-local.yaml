@@ -85,6 +85,54 @@ channels:
         chaincodeQuery: true
         ledgerQuery: true
         eventSource: false
+      
+      peer0.org3.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer1.org3.example.com:
+        endorsingPeer: false
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: false
+
+      peer0.org4.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer1.org4.example.com:
+        endorsingPeer: false
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: false
+
+      peer0.org5.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer1.org5.example.com:
+        endorsingPeer: false
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: false
+
+      peer0.org6.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer1.org6.example.com:
+        endorsingPeer: false
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: false
 
     # [Optional]. what chaincodes are expected to exist on this channel? The application can use
     # this information to validate that the target peers are in the expected state by comparing
@@ -120,7 +168,7 @@ organizations:
     # this way. The SDK should allow applications to set the org admin identity via APIs, and only use
     # this route as an alternative when it exists.
     adminPrivateKey:
-      path: artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/5890f0061619c06fb29dea8cb304edecc020fe63f41a6db109f1e227cc1cb2a8_sk
+      path: artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/4d9fb86f037730984c44804b2b5ad12dd11c73e50ba36c4bdd2e766c99352aa3_sk
     signedCert:
       path: artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
@@ -137,9 +185,57 @@ organizations:
     certificateAuthorities:
       - ca-org2
     adminPrivateKey:
-      path: artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/1995b11d6573ed3be52fcd7a5fa477bc0f183e1f5f398c8281d0ce7c2c75a076_sk
+      path: artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/1b9f2faccb94c5e7a1cf706d955ed5e1d583c41735908a0bb9cca93b7b2b5583_sk
     signedCert:
       path: artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
+
+  Org3:
+    mspid: Org3MSP
+    peers:
+      - peer0.org3.example.com
+      - peer1.org3.example.com
+    certificateAuthorities:
+      - ca-org3
+    adminPrivateKey:
+      path: artifacts/channel/crypto-config/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/keystore/b2beb754750bb52ad79b8d7782d7ed01e611b0380ea71fc5b1096d903d0d0f9b_sk
+    signedCert:
+      path: artifacts/channel/crypto-config/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/signcerts/Admin@org3.example.com-cert.pem
+
+  Org4:
+    mspid: Org4MSP
+    peers:
+      - peer0.org4.example.com
+      - peer1.org4.example.com
+    certificateAuthorities:
+      - ca-org4
+    adminPrivateKey:
+      path: artifacts/channel/crypto-config/peerOrganizations/org4.example.com/users/Admin@org4.example.com/msp/keystore/677d9d72f96a2ffa4411286f4fde1d8f0c865208e296b1bd23959e63b9c6e9c5_sk
+    signedCert:
+      path: artifacts/channel/crypto-config/peerOrganizations/org4.example.com/users/Admin@org4.example.com/msp/signcerts/Admin@org4.example.com-cert.pem
+
+  Org5:
+    mspid: Org5MSP
+    peers:
+      - peer0.org5.example.com
+      - peer1.org5.example.com
+    certificateAuthorities:
+      - ca-org5
+    adminPrivateKey:
+      path: artifacts/channel/crypto-config/peerOrganizations/org5.example.com/users/Admin@org5.example.com/msp/keystore/090283183ae2e02bbe4045b07f23461f4658e87aacdd0b7fb4d50ef02d991e95_sk
+    signedCert:
+      path: artifacts/channel/crypto-config/peerOrganizations/org5.example.com/users/Admin@org5.example.com/msp/signcerts/Admin@org5.example.com-cert.pem
+
+  Org6:
+    mspid: Org6MSP
+    peers:
+      - peer0.org6.example.com
+      - peer1.org6.example.com
+    certificateAuthorities:
+      - ca-org6
+    adminPrivateKey:
+      path: artifacts/channel/crypto-config/peerOrganizations/org6.example.com/users/Admin@org6.example.com/msp/keystore/7594f560eb33627ee388bf601d59f46f4f50051109c9345ed311c8b219ae291a_sk
+    signedCert:
+      path: artifacts/channel/crypto-config/peerOrganizations/org6.example.com/users/Admin@org6.example.com/msp/signcerts/Admin@org6.example.com-cert.pem
 
 #
 # List of orderers to send transaction and channel create/update requests to. For the time
@@ -148,7 +244,7 @@ organizations:
 #
 orderers:
   orderer.example.com:
-    url: grpcs://9.134.210.184:7050
+    url: grpcs://9.134.207.59:7050
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
@@ -166,10 +262,10 @@ orderers:
 peers:
   peer0.org1.example.com:
     # this URL is used to send endorsement and query requests
-    url: grpcs://9.134.210.184:7051
+    url: grpcs://9.134.210.66:7051
 
     # this URL is used to connect the EventHub and registering event listeners
-    eventUrl: grpcs://9.134.210.184:7053
+    eventUrl: grpcs://9.134.210.66:7053
 
     grpcOptions:
       ssl-target-name-override: peer0.org1.example.com
@@ -177,28 +273,94 @@ peers:
       path: artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
 
   peer1.org1.example.com:
-    url: grpcs://9.134.210.184:7056
-    eventUrl: grpcs://9.134.210.184:7058
+    url: grpcs://9.134.210.66:7056
+    eventUrl: grpcs://9.134.210.66:7058
     grpcOptions:
       ssl-target-name-override: peer1.org1.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
 
   peer0.org2.example.com:
-    url: grpcs://9.134.206.198:8051
-    eventUrl: grpcs://9.134.206.198:8053
+    url: grpcs://9.134.207.59:8051
+    eventUrl: grpcs://9.134.207.59:8053
     grpcOptions:
       ssl-target-name-override: peer0.org2.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
 
   peer1.org2.example.com:
-    url: grpcs://9.134.206.198:8056
-    eventUrl: grpcs://9.134.206.198:8058
+    url: grpcs://9.134.207.59:8056
+    eventUrl: grpcs://9.134.207.59:8058
     grpcOptions:
       ssl-target-name-override: peer1.org2.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt
+
+####################################################################################
+
+  peer0.org3.example.com:
+    url: grpcs://9.134.210.66:9051
+    eventUrl: grpcs://9.134.210.66:9053
+    grpcOptions:
+      ssl-target-name-override: peer0.org3.example.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
+
+  peer1.org3.example.com:
+    url: grpcs://9.134.210.66:9056
+    eventUrl: grpcs://9.134.210.66:9058
+    grpcOptions:
+      ssl-target-name-override: peer1.org3.example.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/tls/ca.crt
+
+  peer0.org4.example.com:
+    url: grpcs://9.134.207.59:10051
+    eventUrl: grpcs://9.134.207.59:10053
+    grpcOptions:
+      ssl-target-name-override: peer0.org4.example.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/tls/ca.crt
+
+  peer1.org4.example.com:
+    url: grpcs://9.134.207.59:10056
+    eventUrl: grpcs://9.134.207.59:10058
+    grpcOptions:
+      ssl-target-name-override: peer1.org4.example.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/tls/ca.crt
+
+  peer0.org5.example.com:
+    url: grpcs://9.134.210.66:11051
+    eventUrl: grpcs://9.134.210.66:11053
+    grpcOptions:
+      ssl-target-name-override: peer0.org5.example.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/tls/ca.crt
+
+  peer1.org5.example.com:
+    url: grpcs://9.134.210.66:11056
+    eventUrl: grpcs://9.134.210.66:11058
+    grpcOptions:
+      ssl-target-name-override: peer1.org5.example.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org5.example.com/peers/peer1.org5.example.com/tls/ca.crt
+
+  peer0.org6.example.com:
+    url: grpcs://9.134.207.59:12051
+    eventUrl: grpcs://9.134.207.59:12053
+    grpcOptions:
+      ssl-target-name-override: peer0.org6.example.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/tls/ca.crt
+
+  peer1.org6.example.com:
+    url: grpcs://9.134.207.59:12056
+    eventUrl: grpcs://9.134.207.59:12058
+    grpcOptions:
+      ssl-target-name-override: peer1.org6.example.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org6.example.com/peers/peer1.org6.example.com/tls/ca.crt
 
 #
 # Fabric-CA is a special kind of Certificate Authority provided by Hyperledger Fabric which allows
@@ -207,7 +369,7 @@ peers:
 #
 certificateAuthorities:
   ca-org1:
-    url: https://9.134.210.184:7054
+    url: https://9.134.210.66:7054
     # the properties specified under this object are passed to the 'http' client verbatim when
     # making the request to the Fabric-CA server
     httpOptions:
@@ -224,7 +386,7 @@ certificateAuthorities:
     caName: ca-org1
 
   ca-org2:
-    url: https://9.134.206.198:8054
+    url: https://9.134.207.59:8054
     httpOptions:
       verify: false
     tlsCACerts:
@@ -234,3 +396,51 @@ certificateAuthorities:
         enrollSecret: adminpw
     # [Optional] The optional name of the CA.
     caName: ca-org2
+
+  ca-org3:
+    url: https://9.134.210.66:9054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org3.example.com/ca/ca.org3.example.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    # [Optional] The optional name of the CA.
+    caName: ca-org3
+
+  ca-org4:
+    url: https://9.134.207.59:10054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org4.example.com/ca/ca.org4.example.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    # [Optional] The optional name of the CA.
+    caName: ca-org4
+
+  ca-org5:
+    url: https://9.134.210.66:11054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org5.example.com/ca/ca.org5.example.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    # [Optional] The optional name of the CA.
+    caName: ca-org5
+
+  ca-org6:
+    url: https://9.134.207.59:12054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/org6.example.com/ca/ca.org6.example.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    # [Optional] The optional name of the CA.
+    caName: ca-org6

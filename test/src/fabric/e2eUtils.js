@@ -150,7 +150,7 @@ function disconnect(ehs) {
 };
 
 function instantiateChaincode(chaincode, endorsement_policy, upgrade){
-	Client.setConfigSetting('request-timeout', 220000); // 120000
+	Client.setConfigSetting('request-timeout', 420000); // 120000
 
     var channel = testUtil.getChannel(chaincode.channel);
     if(channel === null) {
@@ -198,7 +198,7 @@ function instantiateChaincode(chaincode, endorsement_policy, upgrade){
 	}).then((admin) => {
 		the_user = admin;
 
-        let eventPeer = null;
+		let eventPeer = null;
 		for(let org in ORGS) {
 		    if(org.indexOf('org') === 0) {
 		        for (let key in ORGS[org]) {
