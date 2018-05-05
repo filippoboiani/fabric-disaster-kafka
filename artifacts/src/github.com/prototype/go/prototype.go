@@ -77,6 +77,8 @@ func (t *MedicalRecord) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return t.getHistoryForRecord(stub, args)
 	} else if function == "queryAllRecords" {
 		return t.queryAllRecords(stub)
+	} else if function == "query" {
+		return t.Query(stub, args)
 	}
 
 	if err != nil {
@@ -86,6 +88,34 @@ func (t *MedicalRecord) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	// Return the result as success payload
 	fmt.Println("invoke did not find func: " + function) //error
 	return shim.Error("Received unknown function invocation")
+}
+
+// query current money of the account,should be [query accout]
+func (t *MedicalRecord) Query(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	var personalNumber string // Entity
+	var err error
+
+	if len(args) != 1 {
+		return shim.Error("Incorrect number of arguments. Expecting personal number of the person to query")
+	}
+
+	personalNumber = args[0]
+
+	// Get the state from the ledger
+	medicalRecord, err := stub.GetState(personalNumber)
+	if err != nil {
+		jsonResp := "{\"Error\":\"Failed to get state for " + personalNumber + "\"}"
+		return shim.Error(jsonResp)
+	}
+
+	if medicalRecord == nil {
+		jsonResp := "{\"Error\":\"No medical record with personal number " + personalNumber + "\"}"
+		return shim.Error(jsonResp)
+	}
+
+	jsonResp := "{\"Personal number\":\"" + personalNumber + "\",\"Medical Record\":\"" + string(medicalRecord) + "\"}"
+	fmt.Printf("Query Response:%s\n", jsonResp)
+	return shim.Success(medicalRecord)
 }
 
 // Retrieve medical record of person with personal number as identifier

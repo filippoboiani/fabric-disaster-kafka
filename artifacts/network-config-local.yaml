@@ -244,7 +244,7 @@ organizations:
 #
 orderers:
   orderer.example.com:
-    url: grpcs://9.134.207.59:7050
+    url: grpcs://192.168.0.8:7050
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
@@ -262,10 +262,10 @@ orderers:
 peers:
   peer0.org1.example.com:
     # this URL is used to send endorsement and query requests
-    url: grpcs://9.134.210.66:7051
+    url: grpcs://192.168.0.8:7051
 
     # this URL is used to connect the EventHub and registering event listeners
-    eventUrl: grpcs://9.134.210.66:7053
+    eventUrl: grpcs://192.168.0.8:7053
 
     grpcOptions:
       ssl-target-name-override: peer0.org1.example.com
@@ -273,24 +273,24 @@ peers:
       path: artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
 
   peer1.org1.example.com:
-    url: grpcs://9.134.210.66:7056
-    eventUrl: grpcs://9.134.210.66:7058
+    url: grpcs://192.168.0.8:7056
+    eventUrl: grpcs://192.168.0.8:7058
     grpcOptions:
       ssl-target-name-override: peer1.org1.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
 
   peer0.org2.example.com:
-    url: grpcs://9.134.207.59:8051
-    eventUrl: grpcs://9.134.207.59:8053
+    url: grpcs://192.168.0.10:8051
+    eventUrl: grpcs://192.168.0.10:8053
     grpcOptions:
       ssl-target-name-override: peer0.org2.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
 
   peer1.org2.example.com:
-    url: grpcs://9.134.207.59:8056
-    eventUrl: grpcs://9.134.207.59:8058
+    url: grpcs://192.168.0.10:8056
+    eventUrl: grpcs://192.168.0.10:8058
     grpcOptions:
       ssl-target-name-override: peer1.org2.example.com
     tlsCACerts:
@@ -299,64 +299,64 @@ peers:
 ####################################################################################
 
   peer0.org3.example.com:
-    url: grpcs://9.134.210.66:9051
-    eventUrl: grpcs://9.134.210.66:9053
+    url: grpcs://192.168.0.10:9051
+    eventUrl: grpcs://192.168.0.10:9053
     grpcOptions:
       ssl-target-name-override: peer0.org3.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
 
   peer1.org3.example.com:
-    url: grpcs://9.134.210.66:9056
-    eventUrl: grpcs://9.134.210.66:9058
+    url: grpcs://192.168.0.10:9056
+    eventUrl: grpcs://192.168.0.10:9058
     grpcOptions:
       ssl-target-name-override: peer1.org3.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/tls/ca.crt
 
   peer0.org4.example.com:
-    url: grpcs://9.134.207.59:10051
-    eventUrl: grpcs://9.134.207.59:10053
+    url: grpcs://192.168.0.10:10051
+    eventUrl: grpcs://192.168.0.10:10053
     grpcOptions:
       ssl-target-name-override: peer0.org4.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/tls/ca.crt
 
   peer1.org4.example.com:
-    url: grpcs://9.134.207.59:10056
-    eventUrl: grpcs://9.134.207.59:10058
+    url: grpcs://192.168.0.10:10056
+    eventUrl: grpcs://192.168.0.10:10058
     grpcOptions:
       ssl-target-name-override: peer1.org4.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/tls/ca.crt
 
   peer0.org5.example.com:
-    url: grpcs://9.134.210.66:11051
-    eventUrl: grpcs://9.134.210.66:11053
+    url: grpcs://192.168.0.10:11051
+    eventUrl: grpcs://192.168.0.10:11053
     grpcOptions:
       ssl-target-name-override: peer0.org5.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/tls/ca.crt
 
   peer1.org5.example.com:
-    url: grpcs://9.134.210.66:11056
-    eventUrl: grpcs://9.134.210.66:11058
+    url: grpcs://192.168.0.10:11056
+    eventUrl: grpcs://192.168.0.10:11058
     grpcOptions:
       ssl-target-name-override: peer1.org5.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org5.example.com/peers/peer1.org5.example.com/tls/ca.crt
 
   peer0.org6.example.com:
-    url: grpcs://9.134.207.59:12051
-    eventUrl: grpcs://9.134.207.59:12053
+    url: grpcs://192.168.0.10:12051
+    eventUrl: grpcs://192.168.0.10:12053
     grpcOptions:
       ssl-target-name-override: peer0.org6.example.com
     tlsCACerts:
       path: artifacts/channel/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/tls/ca.crt
 
   peer1.org6.example.com:
-    url: grpcs://9.134.207.59:12056
-    eventUrl: grpcs://9.134.207.59:12058
+    url: grpcs://192.168.0.10:12056
+    eventUrl: grpcs://192.168.0.10:12058
     grpcOptions:
       ssl-target-name-override: peer1.org6.example.com
     tlsCACerts:
@@ -369,7 +369,7 @@ peers:
 #
 certificateAuthorities:
   ca-org1:
-    url: https://9.134.210.66:7054
+    url: https://192.168.0.8:7054
     # the properties specified under this object are passed to the 'http' client verbatim when
     # making the request to the Fabric-CA server
     httpOptions:
@@ -386,7 +386,7 @@ certificateAuthorities:
     caName: ca-org1
 
   ca-org2:
-    url: https://9.134.207.59:8054
+    url: https://192.168.0.10:8054
     httpOptions:
       verify: false
     tlsCACerts:
@@ -398,7 +398,7 @@ certificateAuthorities:
     caName: ca-org2
 
   ca-org3:
-    url: https://9.134.210.66:9054
+    url: https://192.168.0.10:9054
     httpOptions:
       verify: false
     tlsCACerts:
@@ -410,7 +410,7 @@ certificateAuthorities:
     caName: ca-org3
 
   ca-org4:
-    url: https://9.134.207.59:10054
+    url: https://192.168.0.10:10054
     httpOptions:
       verify: false
     tlsCACerts:
@@ -422,7 +422,7 @@ certificateAuthorities:
     caName: ca-org4
 
   ca-org5:
-    url: https://9.134.210.66:11054
+    url: https://192.168.0.10:11054
     httpOptions:
       verify: false
     tlsCACerts:
@@ -434,7 +434,7 @@ certificateAuthorities:
     caName: ca-org5
 
   ca-org6:
-    url: https://9.134.207.59:12054
+    url: https://192.168.0.10:12054
     httpOptions:
       verify: false
     tlsCACerts:

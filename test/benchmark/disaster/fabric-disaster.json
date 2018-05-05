@@ -3,7 +3,7 @@
     "cryptodir": "network/fabric-v11/prototype/channel/crypto-config",
     "network": {
       "orderer": {
-        "url": "grpcs://9.134.207.59:7050",
+        "url": "grpcs://localhost:7050",
         "mspid": "OrdererMSP",
         "user": {
           "key": "network/fabric-v11/prototype/channel/crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/cdc2b76cd56c6bc9b06d6008183f7847e5ade227c6e01faec6bd569a14ae6196_sk",
@@ -20,18 +20,18 @@
           "cert": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem"
         },
         "ca": {
-          "url": "https://9.134.210.66:7054",
+          "url": "https://localhost:7054",
           "name": "ca-org1"
         },
         "peer1": {
-          "requests": "grpcs://9.134.210.66:7051",
-          "events": "grpcs://9.134.210.66:7053",
+          "requests": "grpcs://localhost:7051",
+          "events": "grpcs://localhost:7053",
           "server-hostname": "peer0.org1.example.com",
           "tls_cacerts": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
         },
         "peer2": {
-          "requests": "grpcs://9.134.210.66:7056",
-          "events": "grpcs://9.134.210.66:7058",
+          "requests": "grpcs://localhost:7056",
+          "events": "grpcs://localhost:7058",
           "server-hostname": "peer1.org1.example.com",
           "tls_cacerts": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
         }
@@ -44,18 +44,18 @@
           "cert": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem"
         },
         "ca": {
-          "url": "https://9.134.207.59:8054",
+          "url": "https://localhost:8054",
           "name": "ca-org2"
         },
         "peer1": {
-          "requests": "grpcs://9.134.207.59:8051",
-          "events": "grpcs://9.134.207.59:8053",
+          "requests": "grpcs://localhost:8051",
+          "events": "grpcs://localhost:8053",
           "server-hostname": "peer0.org2.example.com",
           "tls_cacerts": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
         },
         "peer2": {
-          "requests": "grpcs://9.134.207.59:8056",
-          "events": "grpcs://9.134.207.59:8058",
+          "requests": "grpcs://localhost:8056",
+          "events": "grpcs://localhost:8058",
           "server-hostname": "peer1.org2.example.com",
           "tls_cacerts": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt"
         }
@@ -68,56 +68,31 @@
           "cert": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/signcerts/Admin@org3.example.com-cert.pem"
         },
         "ca": {
-          "url": "https://9.134.210.66:9054",
+          "url": "https://localhost:9054",
           "name": "ca-org3"
         },
         "peer1": {
-          "requests": "grpcs://9.134.210.66:9051",
-          "events": "grpcs://9.134.210.66:9053",
+          "requests": "grpcs://localhost:9051",
+          "events": "grpcs://localhost:9053",
           "server-hostname": "peer0.org3.example.com",
           "tls_cacerts": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt"
         },
         "peer2": {
-          "requests": "grpcs://9.134.210.66:9056",
-          "events": "grpcs://9.134.210.66:9058",
+          "requests": "grpcs://localhost:9056",
+          "events": "grpcs://localhost:9058",
           "server-hostname": "peer1.org3.example.com",
           "tls_cacerts": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/tls/ca.crt"
-        }
-      },
-      "org4": {
-        "name": "peerOrg4",
-        "user": {
-          "key": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org4.example.com/users/Admin@org4.example.com/msp/keystore/677d9d72f96a2ffa4411286f4fde1d8f0c865208e296b1bd23959e63b9c6e9c5_sk",
-          "cert": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org4.example.com/users/Admin@org4.example.com/msp/signcerts/Admin@org4.example.com-cert.pem"
-        },
-        "mspid": "Org4MSP",
-        "ca": {
-          "url": "https://9.134.207.59:10054",
-          "name": "ca-org4"
-        },
-        "peer1": {
-          "requests": "grpcs://9.134.207.59:10051",
-          "events": "grpcs://9.134.207.59:10053",
-          "server-hostname": "peer0.org4.example.com",
-          "tls_cacerts": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/tls/ca.crt"
-        },
-        "peer2": {
-          "requests": "grpcs://9.134.207.59:10056",
-          "events": "grpcs://9.134.207.59:10058",
-          "server-hostname": "peer1.org4.example.com",
-          "tls_cacerts": "network/fabric-v11/prototype/channel/crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/tls/ca.crt"
         }
       }
     },
     "channel": [
       {
         "name": "mychannel",
-        "config": "network/fabric-v11/prototype/channel/mychannel.tx",
+        "config": "../artifacts/channel/mychannel.tx",
         "organizations": [
           "org1",
           "org2",
-          "org3",
-          "org4"
+          "org3"
         ],
         "deployed": false
       }
@@ -150,27 +125,13 @@
             "name": "member",
             "mspId": "Org3MSP"
           }
-        },
-        {
-          "role": {
-            "name": "member",
-            "mspId": "Org4MSP"
-          }
-        },
-        {
-          "role": {
-            "name": "admin",
-            "mspId": "Org1MSP"
-          }
         }
       ],
       "policy": {
         "1-of": [ 
           {"signed-by": 0},
           {"signed-by": 1},
-          {"signed-by": 2},
-          {"signed-by": 3},
-          {"signed-by": 4}
+          {"signed-by": 2}
         ]
       }
     },

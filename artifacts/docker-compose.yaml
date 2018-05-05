@@ -22,6 +22,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./channel/crypto-config/peerOrganizations/org1.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/org1.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
       - ./ca:/etc/hyperledger/fabric-ca-server
     container_name: ca_peerOrg1
 
@@ -40,6 +41,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./channel/crypto-config/peerOrganizations/org2.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/org2.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
       - ./ca:/etc/hyperledger/fabric-ca-server
     container_name: ca_peerOrg2
 
@@ -58,6 +60,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./channel/crypto-config/peerOrganizations/org3.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/org3.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
       - ./ca:/etc/hyperledger/fabric-ca-server
     container_name: ca_peerOrg3
 
@@ -76,6 +79,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./channel/crypto-config/peerOrganizations/org4.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/org4.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
       - ./ca:/etc/hyperledger/fabric-ca-server
     container_name: ca_peerOrg4
 
@@ -94,6 +98,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./channel/crypto-config/peerOrganizations/org5.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/org5.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
       - ./ca:/etc/hyperledger/fabric-ca-server
     container_name: ca_peerOrg5
 
@@ -112,6 +117,7 @@ services:
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
       - ./channel/crypto-config/peerOrganizations/org6.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/org6.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
       - ./ca:/etc/hyperledger/fabric-ca-server
     container_name: ca_peerOrg6
 
@@ -125,10 +131,15 @@ services:
       - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
       - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
+      # Enable TLS
       - ORDERER_GENERAL_TLS_ENABLED=true
       - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
       - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
       - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt, /etc/hyperledger/crypto/peerOrg3/tls/ca.crt, /etc/hyperledger/crypto/peerOrg4/tls/ca.crt, /etc/hyperledger/crypto/peerOrg5/tls/ca.crt, /etc/hyperledger/crypto/peerOrg6/tls/ca.crt]
+      # Kafka 
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_VERBOSE=true
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
     command: orderer
     ports:
@@ -366,6 +377,10 @@ services:
     environment:
       - ZOO_MY_ID=1
       - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=zookeeper1:2888:3888 server.3=zookeeper2:2888:3888
+    ports:
+      - 2181:2181
+      - 2888:2888
+      - 3888:2888
 
   zookeeper1:
     container_name: zookeeper1
@@ -375,6 +390,10 @@ services:
     environment:
       - ZOO_MY_ID=2
       - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=zookeeper1:2888:3888 server.3=zookeeper2:2888:3888
+    ports:
+      - 12181:2181
+      - 12888:2888
+      - 13888:2888
 
   zookeeper2:
     container_name: zookeeper2
@@ -384,6 +403,10 @@ services:
     environment:
       - ZOO_MY_ID=3
       - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=zookeeper1:2888:3888 server.3=zookeeper2:2888:3888
+    ports:
+      - 22181:2181
+      - 22888:2888
+      - 23888:2888
 
   kafka0:
     container_name: kafka0
@@ -396,6 +419,9 @@ services:
       - KAFKA_DEFAULT_REPLICATION_FACTOR=3
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
       - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+    ports:
+      - 9092:9092
+      - 9093:9093
     depends_on:
       - zookeeper0
       - zookeeper1
@@ -412,6 +438,9 @@ services:
       - KAFKA_DEFAULT_REPLICATION_FACTOR=3
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
       - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+    ports:
+      - 10092:9092
+      - 10093:9093
     depends_on:
       - zookeeper0
       - zookeeper1
@@ -428,6 +457,9 @@ services:
       - KAFKA_DEFAULT_REPLICATION_FACTOR=3
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
       - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+    ports:
+      - 11092:9092
+      - 11093:9093
     depends_on:
       - zookeeper0
       - zookeeper1
@@ -444,6 +476,9 @@ services:
       - KAFKA_DEFAULT_REPLICATION_FACTOR=3
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
       - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+    ports:
+      - 12092:9092
+      - 12093:9093
     depends_on:
       - zookeeper0
       - zookeeper1

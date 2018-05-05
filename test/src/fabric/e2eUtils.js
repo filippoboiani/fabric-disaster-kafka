@@ -150,7 +150,7 @@ function disconnect(ehs) {
 };
 
 function instantiateChaincode(chaincode, endorsement_policy, upgrade){
-	Client.setConfigSetting('request-timeout', 420000); // 120000
+	Client.setConfigSetting('request-timeout', 320000); // 120000
 
     var channel = testUtil.getChannel(chaincode.channel);
     if(channel === null) {
@@ -251,6 +251,8 @@ function instantiateChaincode(chaincode, endorsement_policy, upgrade){
 
 			return channel.sendUpgradeProposal(request);
 		} else {
+			var t = global.tapeObj;
+			t.comment('BUILD PROPOSAL');
 			let request = buildChaincodeProposal(client, the_user, chaincode, upgrade, transientMap, endorsement_policy);
 			tx_id = request.txId;
 			return channel.sendInstantiateProposal(request);
@@ -286,7 +288,6 @@ function instantiateChaincode(chaincode, endorsement_policy, upgrade){
 			eventhubs.forEach((eh) => {
 				let txPromise = new Promise((resolve, reject) => {
 					let handle = setTimeout(reject, 300000);
-
 					eh.registerTxEvent(deployId.toString(), (tx, code) => {
 						clearTimeout(handle);
 						eh.unregisterTxEvent(deployId);
@@ -498,7 +499,6 @@ module.exports.releasecontext = releasecontext;
 async function invokebycontext(context, id, version, args, timeout){
     const TxErrorEnum = require("./constant.js").TxErrorEnum;
     const TxErrorIndex = require("./constant.js").TxErrorIndex;
-
     const channel = context.channel;
     const eventHubs = context.eventhubs;
     const startTime = Date.now();
@@ -535,7 +535,7 @@ async function invokebycontext(context, id, version, args, timeout){
     try {
         try {
             proposalResponseObject = await channel.sendTransactionProposal(proposalRequest, timeout * 1000);
-            invokeStatus.time_endorse = Date.now();
+			invokeStatus.time_endorse = Date.now();
         } catch (err) {
             invokeStatus.time_endorse = Date.now();
             invokeStatus.error_flags |= TxErrorEnum.ProposalResponseError;
@@ -548,7 +548,7 @@ async function invokebycontext(context, id, version, args, timeout){
         const proposalResponses = proposalResponseObject[0];
         const proposal = proposalResponseObject[1];
 
-        let allGood = true;
+		let allGood = true;
         for(let i in proposalResponses) {
             let one_good = false;
             let proposal_response = proposalResponses[i];
@@ -567,13 +567,14 @@ async function invokebycontext(context, id, version, args, timeout){
                 invokeStatus.verified = true;
                 throw err;
 			}
-            allGood = allGood && one_good;
+			allGood = allGood && one_good;
+			
         }
 
         if (allGood) {
             // check all the read/write sets to see if the same, verify that each peer
             // got the same results on the proposal
-            allGood = channel.compareProposalResponseResults(proposalResponses);
+			allGood = channel.compareProposalResponseResults(proposalResponses);
             if (!allGood) {
             	let err = new Error("Read/Write set mismatch between endorsements");
                 invokeStatus.error_flags |= TxErrorEnum.BadProposalResponseError;
@@ -603,7 +604,7 @@ async function invokebycontext(context, id, version, args, timeout){
                 let handle = setTimeout(reject, newTimeout);
 
                 eh.registerTxEvent(txId,
-                    (tx, code) => {
+                    (tx, code, block) => {
                         clearTimeout(handle);
                         eh.unregisterTxEvent(txId);
 
@@ -632,7 +633,7 @@ async function invokebycontext(context, id, version, args, timeout){
 
         let broadcastResponse;
         try {
-            broadcastResponse = await channel.sendTransaction(transactionRequest);
+			broadcastResponse = await channel.sendTransaction(transactionRequest);
         } catch (err) {
         	// missing the ACK does not mean anything, the Tx could be already under ordering
 			// so let the events decide the final status, but log this error
