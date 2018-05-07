@@ -456,9 +456,6 @@ curl -s -X GET \
 echo
 echo
 
-
-# peer chaincode instantiate -C mychannel -o orderer.example.com:7050 -n mycc -v v0 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -c '{"Args":["init"]}'
-
 echo "GET query chaincode on peer1 of Org1"
 echo
 curl -s -X GET \
@@ -570,10 +567,5 @@ echo
 
 echo "Total execution time : $(($(date +%s)-starttime)) secs ..."
 
-%22a%22%
-ORG1_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjU1NzI0NjcsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1MjU1MzY0Njd9.HgWTwuQswizwQqih9YUVND9GQXF3IbAWU-xthrX7z-w
-ORG2_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjU1NzI0NjgsInVzZXJuYW1lIjoiQmFycnkiLCJvcmdOYW1lIjoiT3JnMiIsImlhdCI6MTUyNTUzNjQ2OH0.NRaj7IH1jjLR85rNpf-CplXJL3Ua4vXiprB_N0lVM64
-ORG3_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjU1NzI0NjgsInVzZXJuYW1lIjoiTGFycnkiLCJvcmdOYW1lIjoiT3JnMyIsImlhdCI6MTUyNTUzNjQ2OH0.z-hwQi4hIdAIasdjpFpYPrIa4dYruC1-vTxlf81D3PY
-ORG4_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjU1NzI0NjksInVzZXJuYW1lIjoiTWFycnkiLCJvcmdOYW1lIjoiT3JnNCIsImlhdCI6MTUyNTUzNjQ2OX0.y-9YVkZ2JZwaDWtKVBw_oYgoEGGmscSM01vsj0Jg6n0
-ORG5_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjU1NzI0NjksInVzZXJuYW1lIjoiVGVycnkiLCJvcmdOYW1lIjoiT3JnNSIsImlhdCI6MTUyNTUzNjQ2OX0.csuu_Sn6xfu119G4WiKR8xdGWt3dA3PBFFTxZcRXPCc
-ORG6_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjU1NzI0NzAsInVzZXJuYW1lIjoiSmVycnkiLCJvcmdOYW1lIjoiT3JnNiIsImlhdCI6MTUyNTUzNjQ3MH0._h0Pv8Iq7hYaYUrpnNNmPDxFNddJxNfn2IxP9Vn36hM
+
+# peer chaincode instantiate -C mychannel -o orderer.example.com:7050 -n mycc -v v0 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -c '{"Args":["init"]}'
